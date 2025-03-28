@@ -1,6 +1,8 @@
 <?php
 
-class UnknownContent extends CatalogueItem
+namespace App\ExternalCatalogue;
+
+class UnknownContent extends CatalogueContent
 {
     public function toArray(): array
     {

@@ -10,7 +10,7 @@ class CatalogueFactory{
 
         return match($type){
             'course' => new Course($data),
-            'livelearning' => new LiveLeaning($data),
+            'live learning' => new LiveLearning($data),
             default => new UnknownContent($data)
         };
     }

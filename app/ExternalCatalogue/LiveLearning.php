@@ -1,6 +1,6 @@
 <?php
 
-namespace app\ExternalCatalogue;
+namespace App\ExternalCatalogue;
 
 class LiveLearning extends CatalogueContent {
 
