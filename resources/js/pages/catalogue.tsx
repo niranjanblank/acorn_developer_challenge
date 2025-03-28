@@ -5,6 +5,7 @@ import axios from 'axios';
 import LiveLearning from "@/components/custom_components/LiveLearning"
 
 import { useEffect, useState } from 'react';
+import Course from '@/components/custom_components/Course';
 
 const Catalogue = () => {
         const [items, setItems] = useState([]);
@@ -50,9 +51,10 @@ const Catalogue = () => {
                     <Typography variant="h2">Employee Catalogue UI</Typography>
                 </Grid>
                 {items.data.map((item, index) => (
-                        <LiveLearning item={item} key={`content-${index}`}/>
-                    ))
-                }
+                        item.contentType === "Course"
+                            ? <Course item={item} key={`content-${index}`} />
+                            : <LiveLearning item={item} key={`content-${index}`} />
+                        ))}
             </Grid>
         </Box>
     );

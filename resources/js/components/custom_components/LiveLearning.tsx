@@ -1,20 +1,26 @@
+import { formatTime } from '@/lib/utils';
 import { Box, Card, CardContent, CardMedia, CircularProgress, Typography } from '@mui/material';
 import {Grid} from "@mui/material"
-import { Book, SchoolIcon, TvIcon } from 'lucide-react';
+import { Book, Clock, SchoolIcon, TvIcon } from 'lucide-react';
 
-const ContentType = ({item}:{item: any}) => {
+const LiveLearning = ({item}:{item: any}) => {
+
     return (
-        <Grid size={{ xs: 6, md: 4 }}>
+        <Grid size={{ xs: 12, sm:6, md: 4 }}>
         <Card
             variant="outlined"
             sx={{
                 height: '100%',
-                backgroundColor: item.type === 'live learning' ? '#f0f7ff' : '#fff',
+                backgroundColor: '#f0f7ff',
                 cursor: 'pointer',
+                transition: 'all 0.3s ease-in-out',
+                '&:hover': {
+                backgroundColor: '#ebb5d1', 
+                transform: 'scale(1.02)',
+                boxShadow: 4,
+                },
 
             }}
-            className='rounded-md'
-            onClick={() => alert(`Clicked on ${item.title}`)}
         >
             {/* Image wrapper with badge */}
             <Box sx={{ position: 'relative' }}>
@@ -24,21 +30,24 @@ const ContentType = ({item}:{item: any}) => {
                         position: 'absolute',
                         top: 8,
                         left: 8,
-                        backgroundColor: item.type === 'course' ? 'primary.main' : 'error.main', // 🎨 Different color
+                        backgroundColor: 'error.main',
                         color: 'white',
                         padding: '4px 8px',
                         borderRadius: '4px',
                         fontSize: '0.75rem',
                         zIndex: 1,
-                        width: 'fit-content', // ✅ Makes width wrap to content
+                        width: 'fit-content',
                         textAlign: 'center',
                         whiteSpace: 'nowrap',
-                        gap: "2px"
+                        gap: 1,
+                        display: 'flex',
+                        alignItems: 'end',
+                        justifyContent: 'center',
+
                     }}
-                    className="flex items-center justify-center"
                 >
 
-                     <TvIcon/>{item.contentType?.toUpperCase()}
+                     <TvIcon/><p >{item.contentType?.toUpperCase()}</p>
                 </Box>
 
                 {/* Image */}
@@ -47,19 +56,22 @@ const ContentType = ({item}:{item: any}) => {
             </Box>
 
             <CardContent>
-                <Typography variant="h6" noWrap>
-                    {item.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {item.description?.slice(0, 100)}...
-                </Typography>
-                <Typography variant="caption" color="primary">
-                    {item.type?.toUpperCase()}
-                </Typography>
-            </CardContent>
+                    <Typography variant="h6" noWrap className='text-2xl font-bold'>
+                        {item.fullname}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {item.summaryText?.length > 100 ? `${item.summaryText.slice(0, 100)}...` : item.summaryText}
+                    </Typography>
+                    <Typography variant="caption" color="primary">
+                        {item.type?.toUpperCase()}
+                    </Typography>
+                    <Typography variant="caption" color="primary" className='flex items-center gap-2 font-semibold'>
+                        <p className='font-bold'>Live Starts:</p><p>{item.timeModified &&  formatTime(item.timeModified)}</p>
+                    </Typography>
+                </CardContent>
         </Card>
     </Grid>
      );
 }
 
-export default ContentType;
+export default LiveLearning;
