@@ -10,6 +10,11 @@ Route::get('/', function () {
 
 Route::get('/api/catalogue', [ExternalCatalogueController::class, 'index']);
 
+Route::get('/catalogue', function () {
+    return Inertia::render('catalogue');
+});
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
