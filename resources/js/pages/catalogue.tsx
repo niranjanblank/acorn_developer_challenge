@@ -6,6 +6,7 @@ import LiveLearning from "@/components/custom_components/LiveLearning"
 
 import { useEffect, useState } from 'react';
 import Course from '@/components/custom_components/Course';
+import TileSkeleton from '@/components/custom_components/TileSkeleton';
 
 const Catalogue = () => {
         const [items, setItems] = useState([]);
@@ -21,16 +22,7 @@ const Catalogue = () => {
                 .finally(() => setLoading(false));
         }, []);
 
-        if (loading) {
-            return (
-                <Box display="flex" justifyContent="center" mt={8}>
-                    <CircularProgress />
-                </Box>
-            );
-        }
 
-
-        console.log(items)
 
     return (
 
@@ -50,11 +42,24 @@ const Catalogue = () => {
                     <img src="/images/acorn_logo.png" alt="..." />
                     <Typography variant="h2">Employee Catalogue UI</Typography>
                 </Grid>
-                {items.data.map((item, index) => (
-                        item.contentType === "Course"
-                            ? <Course item={item} key={`content-${index}`} />
-                            : <LiveLearning item={item} key={`content-${index}`} />
-                        ))}
+                {loading ? (
+                    <>
+                    {Array.from({ length: 6 }).map((_, i) => (
+                      <TileSkeleton key={`skeleton-${i}`} />
+                    ))}
+                  </>
+                    ) : (
+                    <>
+                        {items.data.map((item, index) =>
+                        item.contentType === "Course" ? (
+                            <Course item={item} key={`content-${index}`} />
+                        ) : (
+                            <LiveLearning item={item} key={`content-${index}`} />
+                        )
+                        )}
+                    </>
+                    )}
+
             </Grid>
         </Box>
     );
