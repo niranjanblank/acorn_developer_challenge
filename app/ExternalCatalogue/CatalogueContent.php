@@ -22,8 +22,15 @@ abstract class CatalogueContent
             'completionstatus' => $this->data['completionstatus'] ?? '',
             'cost' => $this->data['cost']?? 0,
             'timeCreated' => $this->data['timecreated'] ?? '',
-            'timeModified' => $this->data['timemodified'] ?? ''
-        ];
+            'timeModified' => $this->data['timemodified'] ?? '',
+            'customFields' => collect($this->data['customfields']??[])
+                            -> map( function ($field){
+                                return [
+                                    'name' => $field['name'] ?? '',
+                                    'data' => $field['data'] ?? '',
+                                ];
+                            }) -> toArray(),
+            ];
     }
 
     // this function needs to be implented by the child classes so they have the common data and their type specific data
