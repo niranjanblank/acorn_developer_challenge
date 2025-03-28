@@ -120,7 +120,9 @@ VITE_PORT=5173
 ```
 
 4. Start docker environment
+```
 docker-compose up --build
+```
 
 5. Access the app
 * You can go at http://127.0.0.1:8000/to access the catalogue page
