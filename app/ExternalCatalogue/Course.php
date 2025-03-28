@@ -17,6 +17,7 @@ class Course extends CatalogueContent {
                                 'name' => $field['name'] ?? '',
                             ];
                         }) -> toArray(),
+                'courseStart' => $this->data['timemodified'] ?? '',
             ]
             );
     }

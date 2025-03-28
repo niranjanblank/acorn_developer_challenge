@@ -1,9 +1,9 @@
 import { formatTime } from '@/lib/utils';
 import { Box, Card, CardContent, CardMedia, CircularProgress, Typography } from '@mui/material';
 import {Grid} from "@mui/material"
-import { Book, Clock, SchoolIcon, TvIcon } from 'lucide-react';
+import { Book, Clock, FileQuestion, SchoolIcon, TvIcon } from 'lucide-react';
 
-const LiveLearning = ({item}:{item: any}) => {
+const UnknownContent = ({item}:{item: any}) => {
 
     return (
         <Grid size={{ xs: 12, sm:6, md: 4 }}>
@@ -15,7 +15,7 @@ const LiveLearning = ({item}:{item: any}) => {
                 cursor: 'pointer',
                 transition: 'all 0.3s ease-in-out',
                 '&:hover': {
-                backgroundColor: '#ebb5d1',
+                backgroundColor: '#ff00ff',
                 transform: 'scale(1.02)',
                 boxShadow: 4,
                 },
@@ -30,7 +30,7 @@ const LiveLearning = ({item}:{item: any}) => {
                         position: 'absolute',
                         top: 8,
                         left: 8,
-                        backgroundColor: 'error.main',
+                        backgroundColor: '#002200',
                         color: 'white',
                         padding: '4px 8px',
                         borderRadius: '4px',
@@ -47,11 +47,11 @@ const LiveLearning = ({item}:{item: any}) => {
                     }}
                 >
 
-                     <TvIcon/><p >{item.contentType?.toUpperCase()}</p>
+                     <FileQuestion/><p >UnknownContent- {item.contentType?.toUpperCase()}</p>
                 </Box>
 
                 {/* Image */}
-                <CardMedia component="img" height="140" image={item.imageUrl || '/images/default_image.jpg'} alt={item.title}
+                <CardMedia component="img" height="140" image={'/images/default_image.jpg'} alt={item.title}
                 />
             </Box>
 
@@ -60,16 +60,10 @@ const LiveLearning = ({item}:{item: any}) => {
                         {item.fullname}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        {item.summaryText?.length > 100 ? `${item.summaryText.slice(0, 100)}...` : item.summaryText}
+                        Unknown Content
                     </Typography>
                     <Typography variant="caption" color="primary">
                         {item.type?.toUpperCase()}
-                    </Typography>
-                    <Typography variant="caption" color="text.primary">
-                        Category: {item.category || "Not Specified"}
-                    </Typography>
-                    <Typography variant="caption" color="primary" className='flex items-center gap-2 font-semibold'>
-                        <p className='font-bold'>Live Starts:</p><p>{item.liveStart &&  formatTime(item.liveStart)}</p>
                     </Typography>
                 </CardContent>
         </Card>
@@ -77,4 +71,4 @@ const LiveLearning = ({item}:{item: any}) => {
      );
 }
 
-export default LiveLearning;
+export default UnknownContent;

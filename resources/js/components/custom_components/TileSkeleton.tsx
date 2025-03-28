@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardMedia, Grid, Skeleton, Typography } from '@
 
 const TileSkeleton = () => {
     return (
-        <Grid item size={{ xs: 12, sm: 6, md: 4 }}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
             <Card
                 variant="outlined"
                 sx={{

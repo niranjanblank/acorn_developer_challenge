@@ -9,6 +9,7 @@ class LiveLearning extends CatalogueContent {
         return array_merge(
             $this->baseFields(), [
                 'category' => $this->data['category'] ?? '',
+                'liveStart' => $this->data['timemodified'] ?? '',
             ]
             );
     }

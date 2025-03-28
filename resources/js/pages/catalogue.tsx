@@ -7,6 +7,7 @@ import LiveLearning from "@/components/custom_components/LiveLearning"
 import { useEffect, useState } from 'react';
 import Course from '@/components/custom_components/Course';
 import TileSkeleton from '@/components/custom_components/TileSkeleton';
+import UnknownContent from '@/components/custom_components/UnknownContent';
 
 const Catalogue = () => {
         const [items, setItems] = useState([]);
@@ -40,7 +41,17 @@ const Catalogue = () => {
                     direction="column"
                 >
                     <img src="/images/acorn_logo.png" alt="..." />
-                    <Typography variant="h2">Employee Catalogue UI</Typography>
+                    <Typography variant="h2"
+                     sx={{
+                        fontSize: {
+                          xs: '1.8rem',  // ~28px for extra-small screens
+                          sm: '2.4rem',  // ~38px for small screens
+                          md: '3rem',    // ~48px for medium and up
+                        },
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                      }}
+                    >Employee Catalogue UI</Typography>
                 </Grid>
                 {loading ? (
                     <>
@@ -49,15 +60,17 @@ const Catalogue = () => {
                     ))}
                   </>
                     ) : (
-                    <>
-                        {items.data.map((item, index) =>
-                        item.contentType === "Course" ? (
-                            <Course item={item} key={`content-${index}`} />
-                        ) : (
-                            <LiveLearning item={item} key={`content-${index}`} />
-                        )
-                        )}
-                    </>
+                        <>
+                        {items.data.map((item, index) => {
+                          if (item.contentType === "Course") {
+                            return <Course item={item} key={`content-${index}`} />;
+                          } else if (item.contentType === "Live Learning") {
+                            return <LiveLearning item={item} key={`content-${index}`} />;
+                          } else {
+                            return <UnknownContent item={item} key={`content-${index}`} />;
+                          }
+                        })}
+                      </>
                     )}
 
             </Grid>

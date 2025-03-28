@@ -1,5 +1,5 @@
 import { formatTime } from '@/lib/utils';
-import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Chip, Grid, Typography } from '@mui/material';
 import { TvIcon } from 'lucide-react';
 
 const Course = ({ item }: { item: any }) => {
@@ -19,7 +19,6 @@ const Course = ({ item }: { item: any }) => {
                     },
                 }}
                 className="rounded-md"
-                onClick={() => alert(`Clicked on ${item.title}`)}
             >
                 {/* Image wrapper with badge */}
                 <Box sx={{ position: 'relative' }}>
@@ -58,13 +57,24 @@ const Course = ({ item }: { item: any }) => {
                     <Typography variant="body2" color="text.secondary">
                         {item.summaryText?.length > 100 ? `${item.summaryText.slice(0, 100)}...` : item.summaryText}
                     </Typography>
-                    <Typography variant="caption" color="primary">
-                        {item.type?.toUpperCase()}
+                    <Typography variant="caption" color="text.primary">
+                        Duration: {item.duration || "Not Specified"}
                     </Typography>
                     <Typography variant="caption" color="primary" className="flex items-center gap-2 font-semibold">
                         <p className="font-bold">Course Scheduled:</p>
-                        <p>{item.timeModified && formatTime(item.timeModified)}</p>
+                        <p>{item.courseStart && formatTime(item.courseStart)}</p>
                     </Typography>
+                    <>
+                    <Typography variant="caption" color="text.primary">
+                    Tags: {item.tags.length>0?"":"Not Available"}
+                    </Typography>
+                    <div className='flex gap-2 flex-wrap'>
+                        {item.tags?.map((tag)=> (
+                            <Chip label= {tag.name} />
+                        ))}
+                    </div>
+                    </>
+
                 </CardContent>
             </Card>
         </Grid>
