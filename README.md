@@ -90,7 +90,7 @@ php artisan serve
 npm run dev
 ```
 6. Access the app
-* You can go at http://127.0.0.1:8000/to access the catalogue page
+* You can go at http://127.0.0.1:8000/  to access the catalogue page
 * You can go at http://127.0.0.1:8000/api/catalogue to just access the external catallogue api
 
 
