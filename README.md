@@ -44,9 +44,7 @@ This setup keeps the backend organized and the frontend responsive, while using 
 
 ---
 ## Demo
-<video width="640" height="360" controls>
-  <source src="/public/videos/acorn_dev_challenge.mp4" type="video/mp4">
-</video>
+[Watch the video](./public/videos/acorn_dev_challenge.mp4)
 
 ##  Option 1: Local Development Setup (No Docker)
 
