@@ -1,6 +1,6 @@
 import { formatTime } from '@/lib/utils';
 import { Box, Card, CardContent, CardMedia, Chip, Grid, Typography } from '@mui/material';
-import { TvIcon } from 'lucide-react';
+import { BookAIcon, BookIcon, TvIcon } from 'lucide-react';
 
 const Course = ({ item }: { item: any }) => {
     return (
@@ -43,7 +43,7 @@ const Course = ({ item }: { item: any }) => {
                             justifyContent: 'center',
                         }}
                     >
-                        <TvIcon />
+                        <BookIcon/>
                         <p>{item.contentType?.toUpperCase()}</p>
                     </Box>
 
